@@ -26,16 +26,15 @@
     line-height: 1.65;
     padding: 60px 24px 80px;
   }
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-  }
+  .container { max-width: 720px; margin: 0 auto; }
   .nav {
     display: flex;
     gap: 18px;
     margin-bottom: 40px;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--stroke);
+    flex-wrap: wrap;
+    align-items: center;
   }
   .nav a {
     color: var(--text-muted);
@@ -50,6 +49,17 @@
     margin-right: auto;
     font-weight: 400;
   }
+  .lang-toggle {
+    color: var(--text-dim);
+    font-size: 12px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--stroke);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+  }
+  .lang-toggle:hover { color: var(--accent-lila); border-color: var(--accent-lila); }
   h1 {
     font-family: var(--font-display);
     font-size: 36px;
@@ -83,11 +93,7 @@
     margin-bottom: 8px;
   }
   p { margin-bottom: 14px; color: var(--text); }
-  ul, ol {
-    margin-bottom: 14px;
-    padding-left: 22px;
-    color: var(--text);
-  }
+  ul, ol { margin-bottom: 14px; padding-left: 22px; color: var(--text); }
   li { margin-bottom: 6px; }
   strong { color: var(--text-strong); }
   a { color: var(--accent-lila); }
@@ -111,24 +117,45 @@
     border-top: 1px solid var(--stroke);
     color: var(--text-dim);
     font-size: 12px;
+    text-align: center;
   }
   .doc { display: none; }
   .doc.active { display: block; }
+  .lang-en { display: none; }
+  body.en .lang-de { display: none; }
+  body.en .lang-en { display: block; }
+  body.en .nav-de { display: none; }
+  body:not(.en) .nav-en { display: none; }
 </style>
 </head>
 <body>
 <div class="container">
 
-<!-- Navigation -->
+<!-- ───────────────────────── NAVIGATION ───────────────────────── -->
 <div class="nav">
   <span class="brand">21 Gramm</span>
-  <a href="#privacy" data-target="privacy">Datenschutz</a>
-  <a href="#terms" data-target="terms">Nutzungsbedingungen</a>
-  <a href="support.html">Support</a>
+  <span class="nav-de">
+    <a href="#privacy" data-target="privacy">Datenschutz</a>
+    &nbsp;
+    <a href="#terms" data-target="terms">Nutzungsbedingungen</a>
+    &nbsp;
+    <a href="support.html">Support</a>
+  </span>
+  <span class="nav-en">
+    <a href="#privacy" data-target="privacy">Privacy</a>
+    &nbsp;
+    <a href="#terms" data-target="terms">Terms</a>
+    &nbsp;
+    <a href="support.html">Support</a>
+  </span>
+  <button class="lang-toggle" onclick="document.body.classList.toggle('en')">DE / EN</button>
 </div>
 
 <!-- ═══════════ PRIVACY ═══════════ -->
 <article class="doc active" id="privacy">
+
+<!-- ─── DE ─── -->
+<div class="lang-de">
 
 <h1>Datenschutzerklärung</h1>
 <div class="meta">Stand: Mai 2026</div>
@@ -218,10 +245,107 @@ Datenschutzerklärung: <a href="https://www.apple.com/legal/privacy/" target="_b
 <h2>8 · Kontakt</h2>
 <p>Bei Fragen oder Bedenken: <a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a></p>
 
+</div>
+
+<!-- ─── EN ─── -->
+<div class="lang-en">
+
+<h1>Privacy Policy</h1>
+<div class="meta">Effective: May 2026</div>
+
+<p class="lead">
+The short answer: <strong>almost no data.</strong> The app is designed so that your
+personal content (journal, mood values, foundation progress, mantra collection)
+stays exclusively on your device. No account, no cloud sync, no tracking, no ads.
+</p>
+
+<h2>1 · Controller</h2>
+<div class="panel">
+<strong>Alessandro Emrich</strong><br>
+Salzstrasse 58<br>
+82110 Germering<br>
+Germany<br>
+Email: <a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a>
+</div>
+
+<h2>2 · Data that stays on your device</h2>
+<p>The following data is written exclusively to the iOS storage (UserDefaults and Core Data) on your device — it never leaves your device:</p>
+<ul>
+  <li>Language and voice preference</li>
+  <li>Default session duration</li>
+  <li>Background sound choice &amp; volume</li>
+  <li>Foundation progress</li>
+  <li>Journal entries (highlight, thought, feeling)</li>
+  <li>Mood values before/after sessions</li>
+  <li>Seen and favorited mantras</li>
+  <li>Session history (date, script ID, duration, pillar)</li>
+  <li>Reminder settings (morning / midday / evening)</li>
+  <li>Theme preference</li>
+</ul>
+<p>If you delete the app, this data is deleted irreversibly.</p>
+
+<h2>3 · Connections the app makes to the outside</h2>
+
+<h3>3.1 · Supabase (content database)</h3>
+<p>When opening the Today tab, the app fetches text content (daily-thread mantra, script metadata) from a Supabase database. Transmitted:</p>
+<ul>
+  <li>the selected language (<code>de</code> or <code>en</code>)</li>
+  <li>the day of the year (e.g. <code>127</code>)</li>
+</ul>
+<p><strong>No device ID, IP-based identification, or user identifier is stored.</strong> Supabase logs standard HTTP access data (IP address, timestamp) for stability monitoring; these are deleted after 7 days.</p>
+<p>Provider: Supabase Inc., 970 Toa Payoh North #07-04, Singapore 318992.<br>
+Privacy policy: <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></p>
+
+<h3>3.2 · Cloudflare R2 (audio CDN)</h3>
+<p>Audio files (guide voice + background sound) are streamed during each session directly from a public Cloudflare R2 bucket. Transmitted is the file path (e.g. <code>de/awareness/A-morning_10_clara.mp3</code>).</p>
+<p>Cloudflare logs standard HTTP access data for abuse prevention.<br>
+Provider: Cloudflare Inc., 101 Townsend St, San Francisco, CA 94107, USA.<br>
+Privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">cloudflare.com/privacypolicy</a></p>
+
+<h3>3.3 · Apple StoreKit (subscription)</h3>
+<p>If you subscribe, payment runs via Apple's StoreKit. The app itself sees neither your Apple ID, your payment details, nor your billing address — it only learns whether you currently hold a valid subscription.</p>
+<p>Provider: Apple Inc., One Apple Park Way, Cupertino, CA 95014, USA.<br>
+Privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank">apple.com/legal/privacy</a></p>
+
+<h2>4 · What the app does NOT do</h2>
+<ul>
+  <li>No analytics (Firebase, Mixpanel, Sentry, etc.)</li>
+  <li>No advertising trackers</li>
+  <li>No cross-app tracking (no App Tracking Transparency prompt needed)</li>
+  <li>No cookies, no web tracking</li>
+  <li>No account, no login</li>
+  <li>No mailing list, no newsletter</li>
+  <li>No location access</li>
+  <li>No access to contacts, photos, microphone</li>
+</ul>
+
+<h2>5 · Local notifications</h2>
+<p>If you enable daily reminders in Settings, the app schedules local notifications at the chosen times via the iOS <code>UserNotifications</code> framework. These run entirely on your device — no push server, no provider involved.</p>
+
+<h2>6 · Your rights (GDPR)</h2>
+<p>Since we collect no personal data, the following rights are largely moot — for completeness:</p>
+<ul>
+  <li><strong>Right of access (Art. 15 GDPR):</strong> all your app data is visible directly in the Profile tab and in the Reflection views.</li>
+  <li><strong>Rectification (Art. 16 GDPR):</strong> journal entries are editable directly in the app.</li>
+  <li><strong>Erasure (Art. 17 GDPR):</strong> uninstall the app OR Profile → "Reset all data".</li>
+  <li><strong>Data portability (Art. 20 GDPR):</strong> we cannot export your data because we don't have it.</li>
+</ul>
+
+<h2>7 · Changes</h2>
+<p>Substantial changes to this Privacy Policy are released via app update; a notice appears in the Profile modal.</p>
+
+<h2>8 · Contact</h2>
+<p>Questions or concerns: <a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a></p>
+
+</div>
+
 </article>
 
 <!-- ═══════════ TERMS ═══════════ -->
 <article class="doc" id="terms">
+
+<!-- ─── DE ─── -->
+<div class="lang-de">
 
 <h1>Nutzungsbedingungen</h1>
 <div class="meta">Stand: Mai 2026</div>
@@ -309,26 +433,123 @@ E-Mail: <a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a>
 <h2>12 · Kontakt</h2>
 <p><a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a></p>
 
+</div>
+
+<!-- ─── EN ─── -->
+<div class="lang-en">
+
+<h1>Terms of Use</h1>
+<div class="meta">Effective: May 2026</div>
+
+<p>By installing and using the "21 Gramm" app, you agree to the following terms.</p>
+
+<h2>1 · About the app</h2>
+<p>21 Gramm is a meditation and reflection app for iOS. It offers guided audio sessions, an optional journal, mood tracking and visualizations of your progress. All personal data remains on your device — see <a href="#privacy" data-target="privacy">Privacy Policy</a>.</p>
+
+<h2>2 · Provider</h2>
+<div class="panel">
+<strong>Alessandro Emrich</strong><br>
+Salzstrasse 58<br>
+82110 Germering<br>
+Germany<br>
+Email: <a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a>
+</div>
+
+<h2>3 · Scope of use</h2>
+
+<h3>3.1 · Free use</h3>
+<p>The app is free to install. The following content is accessible without a subscription:</p>
+<ul>
+  <li>Onboarding and all settings</li>
+  <li>Foundation sequence (3 required lessons: F-arrive, F-sit-01, F-breath-01)</li>
+  <li>4 additional demo sessions (A-morning, C-gratitude, I-present, P-values)</li>
+  <li>Journal and Commonplace</li>
+  <li>Mood tracking and Reflection views</li>
+  <li>Mantra collection</li>
+</ul>
+
+<h3>3.2 · Subscription content</h3>
+<p>Full access to the library (all 96 sessions across 5 pillars) requires a subscription. Currently available options:</p>
+<ul>
+  <li><strong>Monthly:</strong> €9.99 / month</li>
+  <li><strong>Yearly:</strong> €59.99 / year</li>
+</ul>
+<p>Prices may vary by region and are bindingly displayed in your App Store.</p>
+
+<h2>4 · Billing &amp; renewal</h2>
+<p>Billing and subscription management is handled exclusively via your Apple account:</p>
+<ul>
+  <li>Payment is charged at purchase</li>
+  <li><strong>Auto-renewal:</strong> Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period</li>
+  <li><strong>Renewal charge:</strong> applied within the 24 hours before period end</li>
+  <li><strong>Cancellation:</strong> via <em>Settings → [your name] → Subscriptions</em> on your iPhone; cancellation takes effect at the end of the current billing period</li>
+  <li><strong>Free trial (if offered):</strong> any unused portion of a free trial is forfeited upon purchase of a subscription</li>
+</ul>
+
+<h2>5 · Restore purchases</h2>
+<p>If you install the app on a new device or have lost your purchases, you can restore them via <em>Profile → "Restore purchases"</em>. This requires being signed in with the same Apple ID used to take out the subscription.</p>
+
+<h2>6 · Content &amp; disclaimer</h2>
+
+<h3>6.1 · No medical or therapeutic service</h3>
+<p>The app is a tool for self-reflection and mindfulness. It is <strong>not a replacement for medical, psychological, or therapeutic treatment.</strong> If you experience psychological or physical complaints, please consult a doctor or qualified therapist.</p>
+
+<h3>6.2 · Audio content</h3>
+<p>The guided sessions are intended as accompaniment — no guarantee of specific effects or outcomes. Effect and experience are individual.</p>
+
+<h3>6.3 · Availability</h3>
+<p>We strive for uninterrupted operation but cannot guarantee 100% availability. Audio streaming requires an active internet connection.</p>
+
+<h2>7 · Intellectual property</h2>
+<p>All content (audio, text, mantras, design, code) is protected by copyright. By using the app you receive a personal, non-transferable, non-exclusive license for private use — no reproduction, no reverse engineering, no commercial reuse.</p>
+
+<h2>8 · Termination</h2>
+<p>You can end use at any time by:</p>
+<ul>
+  <li>deleting the app from your device, and/or</li>
+  <li>cancelling your subscription via iOS Settings.</li>
+</ul>
+<p>We reserve the right to develop, adapt, or discontinue the app or individual features, with running subscriptions remaining valid for the paid period.</p>
+
+<h2>9 · Liability</h2>
+<p>Within the bounds of statutory law, the provider is liable only for damages caused by intent or gross negligence. Liability for indirect damages, lost profit, or data loss is excluded to the extent permitted by law.</p>
+
+<h2>10 · Applicable law &amp; jurisdiction</h2>
+<p>German law applies, excluding the UN Convention on Contracts for the International Sale of Goods. The legally mandated jurisdiction for consumers is their statutory residence; for entrepreneurs, the provider's seat.</p>
+<p>For disputes, you can use the EU Online Dispute Resolution platform: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">ec.europa.eu/consumers/odr</a></p>
+
+<h2>11 · Changes</h2>
+<p>We may adjust these terms — for substantial changes we inform via an app update with a notice in the Profile modal. Continued use after an update constitutes acceptance of the changed terms.</p>
+
+<h2>12 · Contact</h2>
+<p><a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a></p>
+
+</div>
+
 </article>
 
 <div class="footer">
-  © 2026 · 21 Gramm · Eine Schneeflocke wiegt weniger als nichts — aber tausend davon brechen den dicken Ast.
+  © 2026 · 21 Gramm
 </div>
 
 </div>
 
 <script>
-  // Tab-Navigation: Hash-routing zwischen den beiden Dokumenten
+  // ─── Default language: DE; switch to EN if browser locale starts with en-* ───
+  if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
+    document.body.classList.add('en');
+  }
+
+  // ─── Tab navigation: hash routing between privacy/terms ───
   function showDoc(target) {
     document.querySelectorAll('.doc').forEach(d => d.classList.remove('active'));
     document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
     const doc = document.getElementById(target);
     if (doc) doc.classList.add('active');
-    document.querySelector(`.nav a[data-target="${target}"]`)?.classList.add('active');
+    document.querySelectorAll(`.nav a[data-target="${target}"]`).forEach(a => a.classList.add('active'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Initialer Hash
   const initial = window.location.hash.replace('#', '') || 'privacy';
   showDoc(initial);
 
