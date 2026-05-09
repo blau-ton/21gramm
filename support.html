@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21 Gramm · Support</title>
+<style>
+  :root {
+    --bg-canvas: #100b1c;
+    --bg-card:   #1a1428;
+    --text-strong: #f4ecff;
+    --text:        #e8e0f4;
+    --text-muted:  #a59cb8;
+    --text-dim:    #6e6680;
+    --accent-lila: oklch(0.78 0.13 305);
+    --stroke: rgba(255, 255, 255, 0.08);
+    --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+    --font-body: "Inter", -apple-system, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-canvas);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 60px 24px 80px;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .nav {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--stroke);
+    flex-wrap: wrap;
+  }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .nav a:hover, .nav a.active { color: var(--accent-lila); }
+  .brand {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--text-strong);
+    margin-right: auto;
+    font-weight: 400;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--text-strong);
+    font-weight: 400;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .meta {
+    color: var(--text-dim);
+    font-size: 12px;
+    margin-bottom: 36px;
+    font-family: monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text-strong);
+    font-weight: 400;
+    margin-top: 40px;
+    margin-bottom: 12px;
+  }
+  p { margin-bottom: 14px; }
+  a { color: var(--accent-lila); }
+  .lang-en { display: none; }
+  .lang-toggle {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 12px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--stroke);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+  }
+  .lang-toggle:hover { color: var(--accent-lila); border-color: var(--accent-lila); }
+  body.en .lang-de { display: none; }
+  body.en .lang-en { display: block; }
+  .contact-card {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--stroke);
+    border-radius: 14px;
+  }
+  .contact-card .label {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-family: monospace;
+    margin-bottom: 6px;
+  }
+  .contact-card .value {
+    font-size: 16px;
+    color: var(--text-strong);
+  }
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--stroke);
+    color: var(--text-dim);
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <span class="brand">21 Gramm</span>
+    <a href="index.html#privacy">Datenschutz</a>
+    <a href="index.html#terms">Nutzungsbedingungen</a>
+    <a href="support.html" class="active">Support</a>
+    <button class="lang-toggle" onclick="document.body.classList.toggle('en')">DE / EN</button>
+  </div>
+
+  <!-- ───────────────────────── DE ───────────────────────── -->
+  <div class="lang-de">
+
+    <h1>Support</h1>
+    <p class="meta">21 GRAMM · KONTAKT &amp; HILFE</p>
+
+    <h2>Eine Frage, ein Bug, ein Wunsch?</h2>
+    <p>21 Gramm ist eine kleine, ruhige App. Es gibt kein Helpdesk-System, keine Ticket-Nummer — nur eine Email, an die du direkt schreiben kannst. Antworten kommen meist innerhalb von 1-3 Werktagen.</p>
+
+    <div class="contact-card">
+      <div class="label">EMAIL</div>
+      <div class="value"><a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a></div>
+    </div>
+
+    <h2>Bevor du schreibst — kurze Selbsthilfe</h2>
+
+    <p><strong>Audio lädt nicht / bricht ab</strong><br>
+    Prüfe deine Internet-Verbindung. Die Sitzungen werden gestreamt, kein Offline-Modus in v1.0. Bei schlechtem Netz: WLAN bevorzugen.</p>
+
+    <p><strong>Sprache stimmt nicht</strong><br>
+    Die UI-Sprache kommt aus den iOS-Einstellungen: <em>iPhone-Einstellungen → 21 Gramm → Sprache</em>. Die Stimme (Clara, Leon, Luna, Elias) wählst du unabhängig davon im Profil.</p>
+
+    <p><strong>Reminder kommen nicht an</strong><br>
+    Stelle sicher, dass Mitteilungen für 21 Gramm in <em>iPhone-Einstellungen → Mitteilungen → 21 Gramm</em> aktiv sind. Im Profil findest du einen Test-Button.</p>
+
+    <p><strong>Daten zurücksetzen</strong><br>
+    Im Profil ganz unten: „Daten zurücksetzen". Löscht ALLE lokalen Daten (Sitzungen, Tagebuch, Favoriten, Einstellungen) — unwiderruflich.</p>
+
+    <p><strong>Abo kündigen</strong><br>
+    Über deine Apple-ID: <em>iPhone-Einstellungen → Apple-ID → Abonnements → 21 Gramm Plus → Kündigen</em>. Dein Zugang läuft bis zum Ende der bezahlten Periode.</p>
+
+    <p><strong>Kauf wiederherstellen</strong><br>
+    Im Profil → Abo → „Käufe wiederherstellen". Apple lädt das Receipt neu und Plus wird sofort entriegelt.</p>
+
+    <h2>Datenschutz &amp; Privatsphäre</h2>
+    <p>21 Gramm sammelt keine personenbezogenen Daten auf Servern. Details: <a href="index.html#privacy">Datenschutzerklärung</a>.</p>
+
+  </div>
+
+  <!-- ───────────────────────── EN ───────────────────────── -->
+  <div class="lang-en">
+
+    <h1>Support</h1>
+    <p class="meta">21 GRAMM · CONTACT &amp; HELP</p>
+
+    <h2>A question, a bug, a request?</h2>
+    <p>21 Gramm is a small, quiet app. There is no helpdesk system, no ticket numbers — just an email you can write to directly. Replies usually come within 1-3 business days.</p>
+
+    <div class="contact-card">
+      <div class="label">EMAIL</div>
+      <div class="value"><a href="mailto:blau.ton@icloud.com">blau.ton@icloud.com</a></div>
+    </div>
+
+    <h2>Before you write — quick self-help</h2>
+
+    <p><strong>Audio won't load / cuts out</strong><br>
+    Check your internet connection. Sessions are streamed; there is no offline mode in v1.0. On weak networks: prefer Wi-Fi.</p>
+
+    <p><strong>Language is wrong</strong><br>
+    The UI language comes from iOS settings: <em>iPhone Settings → 21 Gramm → Language</em>. The voice (Clara, Leon, Luna, Elias) is chosen independently in the profile.</p>
+
+    <p><strong>Reminders don't arrive</strong><br>
+    Make sure notifications for 21 Gramm are enabled in <em>iPhone Settings → Notifications → 21 Gramm</em>. There is a test button in the profile.</p>
+
+    <p><strong>Reset data</strong><br>
+    Bottom of the profile: "Reset data". Deletes ALL local data (sessions, journal, favorites, settings) — irreversible.</p>
+
+    <p><strong>Cancel subscription</strong><br>
+    Via your Apple ID: <em>iPhone Settings → Apple ID → Subscriptions → 21 Gramm Plus → Cancel</em>. Your access runs until the end of the paid period.</p>
+
+    <p><strong>Restore purchases</strong><br>
+    Profile → Subscription → "Restore purchases". Apple reloads the receipt and Plus unlocks immediately.</p>
+
+    <h2>Privacy</h2>
+    <p>21 Gramm does not collect personal data on servers. Details: <a href="index.html#privacy">Privacy Policy</a>.</p>
+
+  </div>
+
+  <footer>
+    Eine Schneeflocke wiegt weniger als nichts.
+  </footer>
+
+</div>
+
+<script>
+  // Default-Sprache: DE. EN wenn iOS-Locale auf en-* steht.
+  if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
+    document.body.classList.add('en');
+  }
+</script>
+</body>
+</html>
