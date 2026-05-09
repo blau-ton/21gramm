@@ -5,9 +5,9 @@ Datenschutzerklärung und Nutzungsbedingungen für die iOS-App
 
 Gehostet via **GitHub Pages**:
 
-- Datenschutz: `https://blau-ton.github.io/21gramm-legal/#privacy`
-- Nutzungsbedingungen: `https://blau-ton.github.io/21gramm-legal/#terms`
-- Übersicht: `https://blau-ton.github.io/21gramm-legal/`
+- Datenschutz: `https://blau-ton.github.io/21gramm/#privacy`
+- Nutzungsbedingungen: `https://blau-ton.github.io/21gramm/#terms`
+- Übersicht: `https://blau-ton.github.io/21gramm/`
 
 ## Aktualisierung
 
