@@ -42,7 +42,7 @@ Für vollen Zugang zur Bibliothek (alle 96 Sessions in 5 Pillars) ist ein
 Abonnement erforderlich. Aktuell verfügbare Optionen:
 
 - **Monatsabo:** 9,99 € / Monat
-- **Jahresabo:** 74,99 € / Jahr
+- **Jahresabo:** 59,99 € / Jahr
 
 Preise können je nach Region variieren und werden in deinem App-Store
 verbindlich angezeigt.
